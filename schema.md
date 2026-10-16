@@ -38,3 +38,18 @@ COMMANDE(**id_commande**, date_commande, #id_client?) (modifié)
  n'ont pas de fiche, donc leur commande n'a pas de client.
  Pour ne perdre aucune commande dans la liste, il faut un `LEFT JOIN` depuis `COMMANDE` ;
   un `INNER JOIN` éliminerait toutes les commandes sans client.
+
+  ## Étape 05 : Serveurs et tables
+
+- CATEGORIE(**id_categorie**, nom)
+- PLAT(**id_plat**, nom, prix, #id_categorie)
+- CLIENT(**id_client**, nom)
+- SERVEUR(**id_serveur**, nom) (nouveau)
+- TABLE_SALLE(**id_table_salle**, numero) (nouveau)
+- COMMANDE(**id_commande**, date_commande, #id_client?, #id_serveur, #id_table_salle?) (modifié)
+- LIGNE_COMMANDE(**#id_commande**, **#id_plat**, quantite)
+
+**Piège :** Une table de la salle est un objet physique et durable qui reçoit plusieurs commandes au fil du temps,
+alors qu'une commande est un événement ponctuel (date, plats) : les fusionner répéterait les données de la table à chaque commande.
+Le mot `table` est un mot réservé du SQL (`CREATE TABLE`), donc on ne peut pas nommer ainsi une table sans guillemets ; on choisit un autre nom,
+qui est `table_salle`.
