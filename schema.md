@@ -15,3 +15,11 @@ CATEGORIE(**id_categorie**, nom) (nouveau)
 PLAT(**id_plat**, nom, prix, #id_categorie) (modifié)
 
 **Piège :** Une colonne `categorie VARCHAR(50)` dans `plat` permet les incohérences d'écriture (« Boisson », « boisson », « Boissons » comptées comme trois catégories), oblige à modifier chaque plat pour renommer une catégorie, et empêche d'avoir une catégorie sans plat. Une table `categorie` liée par clé étrangère évite tout cela.
+
+
+## Étape 03 : Les commandes
+
+COMMANDE(**id_commande**, date_commande) (nouveau)
+LIGNE_COMMANDE(**#id_commande**, **#id_plat**, quantite) (nouveau)
+
+**Piège :** La quantité se place dans `LIGNE_COMMANDE`, car elle dépend à la fois de la commande et du plat : zanh oe nombre d'exemplaires anle plat amle commande. La mettre dans `COMMANDE` ou dans `PLAT` serait impossible, puisqu'une commande contient plusieurs plats et qu'un plat figure dans plusieurs commandes.

@@ -1,4 +1,4 @@
--- Étape 01 : liste des plats et prix
+-- Étape 01 : liste des plats avec prix
 
 CREATE TABLE plat (
     id_plat INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
